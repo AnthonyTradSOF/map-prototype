@@ -6,14 +6,14 @@
     <title>Interactive Map Prototype 2</title>
     
     <!-- Leaflet CSS Core Stylesheet Link -->
-    <link rel="stylesheet" href="https://unpkg.com" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     
     <!-- Link to your clean custom CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Sidebar Overlay Container -->
+    <!-- New Sidebar Overlay Container -->
     <div id="sidebar">
         <h2>Locations</h2>
         <ul id="location-list"></ul>
@@ -22,7 +22,7 @@
     <!-- Container element where the map canvas will render -->
     <div id="map"></div>
 
-    <!-- Full Page Interactive Overlay Modal Layout -->
+    <!-- Full Page Interactive Detail Overlay Modal Layout -->
     <div id="detail-overlay">
         <button id="overlay-close-btn">&times;</button>
         <div class="overlay-card">
@@ -32,13 +32,13 @@
             <div class="overlay-right">
                 <h1 id="overlay-title"></h1>
                 <p id="overlay-description"></p>
-                <a id="overlay-external-link" href="#" target="_parent" rel="noopener noreferrer">Visit Website</a>
+                <a id="overlay-external-link" href="#" target="_parent" rel="noopener noreferrer">Visit Farm Website</a>
             </div>
         </div>
     </div>
 
     <!-- Leaflet Processing Module Engine Link -->
-    <script src="https://unpkg.com" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     
     <!-- Link to your clean custom JavaScript map behavior script -->
     <script src="map.js"></script>

@@ -9,7 +9,7 @@ html, body {
 
 #map {
     width: 100% !important;
-    height: 100% !important;
+    height: 100vh !important;
     display: block;
     background-color: #2c3e50;
     z-index: 1;
@@ -79,7 +79,7 @@ html, body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Modal Popup Card Bubble Spacing Dimensions */
+/* Modal Popup & Action Button Styling */
 .popup-content {
     max-width: 220px;
     text-align: center;
@@ -99,7 +99,7 @@ html, body {
     margin: 0 0 12px 0;
 }
 
-/* "Learn More" Action Trigger Inside Map Popups */
+/* "Learn More" Style inside the popup bubble */
 .popup-content .learn-more-btn {
     display: inline-block;
     padding: 8px 16px;
@@ -134,8 +134,8 @@ html, body {
     height: 100vh;
     background-color: rgba(44, 62, 80, 0.96);
     backdrop-filter: blur(8px);
-    z-index: 9999;
-    display: none; /* Hard layout fallback prevent preemptive rendering layout flashes */
+    z-index: 9999; /* Fully blocks map structures */
+    display: none; /* Fixed fallback rendering layout flash bug */
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -171,8 +171,8 @@ html, body {
 /* Centered master information sheet display bounds */
 .overlay-card {
     display: flex;
-    width: 85%;
-    max-width: 960px;
+    width: 100%;
+    /*max-width: 960px;*/
     height: 70vh;
     max-height: 600px;
     background-color: #ffffff;
@@ -220,7 +220,7 @@ html, body {
     line-height: 1.6;
 }
 
-/* External secondary redirection target link element button style */
+/* External secondary redirection button style */
 #overlay-external-link {
     align-self: flex-start;
     display: inline-block;
@@ -244,9 +244,11 @@ html, body {
    ================================================================= */
 @media (max-width: 768px) {
     html, body {
+        position: fixed;
         overflow: hidden;
     }
 
+    /* Transform sidebar into a sliding bottom sheet drawer */
     #sidebar {
         top: auto;
         left: 0;
@@ -262,6 +264,7 @@ html, body {
         overflow-y: visible;
     }
 
+    /* Style the collapsible UI action handle container */
     .drawer-toggle {
         display: flex;
         justify-content: center;
@@ -271,6 +274,7 @@ html, body {
         cursor: pointer;
     }
 
+    /* The visual pill-shaped pull-tab indicator */
     .drawer-toggle::before {
         content: '';
         width: 44px;
@@ -289,6 +293,7 @@ html, body {
         margin: 0 0 12px 0;
     }
 
+    /* Arrange location list into a swipeable horizontal strip */
     #location-list {
         display: flex;
         gap: 12px;
@@ -302,6 +307,7 @@ html, body {
         display: none;
     }
 
+    /* Transform list nodes into thumb-friendly carousel cards */
     .list-item {
         flex: 0 0 190px;
         margin-bottom: 0;
@@ -312,6 +318,7 @@ html, body {
         font-size: 13px;
     }
 
+    /* Make the circular icon dot visible on mobile layout viewports */
     .item-color-dot {
         display: block;
         width: 10px;
@@ -325,14 +332,17 @@ html, body {
         transform: none;
     }
 
+    /* CSS Class triggered by JavaScript to collapse the sheet */
     #sidebar.collapsed {
         transform: translateY(calc(100% - 28px));
     }
 
+    /* Relocate zoom control layout node so it never overlaps the sheet */
     .leaflet-top {
         top: 16px !important;
     }
 
+    /* Overlay mobile dimensions */
     #overlay-close-btn {
         top: 16px;
         right: 20px;
@@ -371,3 +381,4 @@ html, body {
         margin-bottom: 20px;
     }
 }
+

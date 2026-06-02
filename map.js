@@ -48,7 +48,7 @@ window.addEventListener("load", function() {
     const listContainer = document.getElementById('location-list');
 
     // =================================================================
-    // FULL-PAGE MODAL CONTROLLERS & INTERCEPTOR BINDINGS
+    // FULL-PAGE INTERACTIVE DETAIL OVERLAY CAPTURING LOGIC
     // =================================================================
     const detailOverlay = document.getElementById('detail-overlay');
     const closeOverlayBtn = document.getElementById('overlay-close-btn');
@@ -57,22 +57,35 @@ window.addEventListener("load", function() {
     const overlayDesc = document.getElementById('overlay-description');
     const overlayLink = document.getElementById('overlay-external-link');
 
-    // Secure click binding wrapper for modern overlay deployments
-    function openDetailOverlay(title, longCopy, imageUrl, externalUrl) {
-        overlayTitle.innerText = title;
-        overlayDesc.innerText = longCopy;
-        overlayImg.src = imageUrl;
-        overlayLink.href = externalUrl;
-        
-        detailOverlay.classList.add('active');
-    }
+    let localDataStorageArray = [];
 
+    // Global intercept method to map, cache, and fire overlay window transitions
+    window.launchFullScreenOverlay = function(index) {
+        const selectedPoint = localDataStorageArray[index];
+        if (!selectedPoint) return;
+
+        overlayTitle.innerText = selectedPoint.title;
+        overlayDesc.innerText = selectedPoint.overlay_copy; // Populates dedicated unique text block
+        overlayImg.src = selectedPoint.image;
+        overlayLink.href = selectedPoint.url;
+
+        detailOverlay.style.display = 'flex';
+        // Minor timeout ensures layout registers before applying opacity transitions
+        setTimeout(() => {
+            detailOverlay.classList.add('active');
+        }, 15);
+    };
+
+    // Close trigger tracking with clean transition teardown math
     closeOverlayBtn.addEventListener('click', function() {
         detailOverlay.classList.remove('active');
+        setTimeout(() => {
+            detailOverlay.style.display = 'none';
+        }, 400); // 400ms match duration time for fading out CSS sheet completely
     });
 
     // =================================================================
-    // FEATURE 3: ASYNC FETCH DATA ENGINE & MARKER EVENT LISTENERS
+    // FEATURE 3: ASYNC FETCH DATA ENGINE & VERTICAL CENTER ROUTING
     // =================================================================
     fetch('locations.json')
         .then(response => {
@@ -82,13 +95,15 @@ window.addEventListener("load", function() {
             return response.json();
         })
         .then(locations => {
-            locations.forEach(loc => {
-                // Base layout wrapper inside map pin bubble contents
+            localDataStorageArray = locations; // Populate structural storage arrays safely
+
+            locations.forEach((loc, index) => {
+                // Fixed index routing prevents string breakdown inside the loop template
                 const popupHTML = `
                     <div class="popup-content">
                         <h3>${loc.title}</h3>
                         <p>${loc.description}</p>
-                        <button class="learn-more-btn" id="btn-${loc.title.replace(/\s+/g, '-')}">Learn More</button>
+                        <button class="learn-more-btn" onclick="window.launchFullScreenOverlay(${index})">Learn More</button>
                     </div>
                 `;
 
@@ -101,16 +116,6 @@ window.addEventListener("load", function() {
                 })
                 .bindPopup(popupHTML)
                 .addTo(map);
-
-                // Safe event targeting for asynchronously appended popup content layers
-                marker.on('popupopen', function() {
-                    const targetBtn = document.getElementById(`btn-${loc.title.replace(/\s+/g, '-')}`);
-                    if (targetBtn) {
-                        targetBtn.addEventListener('click', function() {
-                            openDetailOverlay(loc.title, loc.overlay_copy, loc.image, loc.url);
-                        });
-                    }
-                });
 
                 const listItem = document.createElement('li');
                 listItem.className = 'list-item';

@@ -1,38 +1,38 @@
 [
     {
         "coords": [49.2827, -123.1207],
-        "title": "Downtown Vancouver",
-        "description": "The bustling core corporate district surrounded by harbor vistas.",
-        "overlay_copy": "Welcome to the heart of the city. Downtown Vancouver sits on a peninsula surrounded by the Burrard Inlet and False Creek. This zone acts as the central business, cultural, and entertainment hub of the Lower Mainland, featuring striking skyscrapers alongside historic landmarks like Gastown.",
+        "title": "Farm 1",
+        "description": "Lorem ipsum dolor sit amet",
+        "overlay_copy": "Consectetur adipiscing elit. Mauris condimentum velit eu tellus mattis, vitae faucibus lorem auctor. Donec bibendum eros vel orci lacinia, id porttitor felis varius.",
         "url": "https://saveonfoods.com",
-        "image": "https://unsplash.com",
+        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
         "color": "#e74c3c"
     },
     {
         "coords": [49.3000, -123.1400],
-        "title": "Stanley Park Seawall",
-        "description": "Scenic ocean-front public perimeter pathway looping the park forest.",
-        "overlay_copy": "Constructed over several decades starting in 1917, the Seawall was built to prevent coastal erosion along the park's perimeter. Today, it stands as the world's longest uninterrupted waterfront path, drawing millions of cyclists, runners, and walkers looking for panoramic mountain vistas.",
-        "url": "https://saveonfoods.comcircular",
-        "image": "https://unsplash.com",
+        "title": "Farm 2",
+        "description": "Suspendisse aliquet nec lacus ac tincidunt. Ut ut lectus sed odio lobortis tincidunt sit amet vitae lorem.",
+        "overlay_copy": "Sed sed fringilla lectus. Ut aliquam lacinia placerat. Maecenas non nulla eget ligula sollicitudin fermentum et eu dolor. Donec ut augue euismod, semper tellus vel, porta mauris. Donec faucibus risus non nibh iaculis, nec mollis nisi tempus.",
+        "url": "https://saveonfoods.com/circular",
+        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
         "color": "#2ecc71"
     },
     {
         "coords": [49.2768, -123.1252],
-        "title": "Yaletown Marina",
-        "description": "Trendy converted warehouse loft community resting on False Creek boat slips.",
-        "overlay_copy": "Once an industrial rail yard packed with textile factories, Yaletown underwent a massive urban revitalization project in the late 20th century. Old loading bays were reimagined into trendy patios, upscale dining lounges, boutique shops, and a premier marina system.",
-        "url": "https://saveonfoods.comdeals",
-        "image": "https://unsplash.com",
+        "title": "Farm 3",
+        "description": "Donec ut nunc arcu. Curabitur bibendum felis ut orci feugiat tristique.",
+        "overlay_copy": "Vestibulum at augue a ante posuere porta. Aenean sed convallis nibh, nec porta nunc. Vivamus consequat urna ac risus maximus, quis accumsan lacus imperdiet. Integer pulvinar nunc eget metus ornare, fermentum hendrerit ex fringilla. Integer tristique enim vitae mauris ultrices, eget iaculis lorem eleifend.",
+        "url": "https://saveonfoods.com/deals",
+        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
         "color": "#3498db"
     },
     {
         "coords": [49.1934, -123.1751],
-        "title": "YVR",
-        "description": "Vancouver International Airport (IATA: YVR, ICAO: CYVR) is an international airport located on Sea Island in Richmond, British Columbia, serving the city of Vancouver and the Lower Mainland region.",
-        "overlay_copy": "YVR serves as a primary international gateway connecting North America to the Asia-Pacific region. This specialized architectural simulation maps out regional logistics and spatial zoning metrics, overlaying native infrastructure frameworks onto local agrarian landscape basemaps.",
-        "url": "https://saveonfoods.comcurated-flyer",
-        "image": "https://unsplash.com",
+        "title": "Farm 4",
+        "description": "Ut in mauris lectus. Donec imperdiet ipsum id urna congue suscipit.",
+        "overlay_copy": "Aliquam pharetra, tellus ac dictum sagittis, nulla nisi aliquam nibh, vel fringilla nunc neque vel purus. Aliquam quis rutrum turpis. Morbi ornare neque convallis fermentum accumsan. Sed ultricies nulla non lorem consectetur, vel eleifend sapien ullamcorper.",
+        "url": "https://saveonfoods.com/curated-flyer",
+        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
         "color": "#000"
     }
 ]
