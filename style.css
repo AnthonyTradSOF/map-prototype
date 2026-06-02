@@ -132,7 +132,7 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(44, 62, 80, 0.96);
+    background-color: rgba(44, 62, 80, 0.8);
     backdrop-filter: blur(8px);
     z-index: 9999; /* Fully blocks map structures */
     display: none; /* Fixed fallback rendering layout flash bug */
@@ -171,7 +171,7 @@ html, body {
 /* Centered master information sheet display bounds */
 .overlay-card {
     display: flex;
-    width: 100%;
+    width: 84%;
     /*max-width: 960px;*/
     height: 70vh;
     max-height: 600px;
