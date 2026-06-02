@@ -26,5 +26,12 @@
         "description": "Vancouver International Airport (IATA: YVR, ICAO: CYVR) is an international airport located on Sea Island in Richmond, British Columbia, serving the city of Vancouver and the Lower Mainland region.",
         "url": "https://www.saveonfoods.com/curated-flyer",
         "color": "#000"
+    },
+    {
+        "coords": [49.1936, -123.1751],
+        "title": "Test",
+        "description": "Vancouver International Airport (IATA: YVR, ICAO: CYVR) is an international airport located on Sea Island in Richmond, British Columbia, serving the city of Vancouver and the Lower Mainland region.",
+        "url": "https://www.saveonfoods.com/curated-flyer",
+        "color": "#000"
     }
 ]
