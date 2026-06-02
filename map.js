@@ -48,7 +48,7 @@ window.addEventListener("load", function() {
     const listContainer = document.getElementById('location-list');
 
     // =================================================================
-    // FULL-PAGE MODAL CONTROLLERS
+    // FULL-PAGE MODAL CONTROLLERS & INTERCEPTOR BINDINGS
     // =================================================================
     const detailOverlay = document.getElementById('detail-overlay');
     const closeOverlayBtn = document.getElementById('overlay-close-btn');
@@ -57,23 +57,22 @@ window.addEventListener("load", function() {
     const overlayDesc = document.getElementById('overlay-description');
     const overlayLink = document.getElementById('overlay-external-link');
 
-    // Function to handle layout initialization and fade-in triggers
-    window.openDetailOverlay = function(title, longCopy, imageUrl, externalUrl) {
+    // Secure click binding wrapper for modern overlay deployments
+    function openDetailOverlay(title, longCopy, imageUrl, externalUrl) {
         overlayTitle.innerText = title;
-        overlayDesc.innerText = longCopy; // Displays our dedicated unique copy string
+        overlayDesc.innerText = longCopy;
         overlayImg.src = imageUrl;
         overlayLink.href = externalUrl;
         
         detailOverlay.classList.add('active');
-    };
+    }
 
-    // Close listener with built-in transition safety mechanics
     closeOverlayBtn.addEventListener('click', function() {
         detailOverlay.classList.remove('active');
     });
 
     // =================================================================
-    // FEATURE 3: ASYNC FETCH DATA ENGINE & INTERACTIVE MARKER MAPS
+    // FEATURE 3: ASYNC FETCH DATA ENGINE & MARKER EVENT LISTENERS
     // =================================================================
     fetch('locations.json')
         .then(response => {
@@ -84,12 +83,12 @@ window.addEventListener("load", function() {
         })
         .then(locations => {
             locations.forEach(loc => {
-                // FIXED: Changed template map string variables to route loc.overlay_copy parameters smoothly
+                // Base layout wrapper inside map pin bubble contents
                 const popupHTML = `
                     <div class="popup-content">
                         <h3>${loc.title}</h3>
                         <p>${loc.description}</p>
-                        <button class="learn-more-btn" onclick="openDetailOverlay('${loc.title.replace(/'/g, "\\'")}', '${loc.overlay_copy.replace(/'/g, "\\'")}', '${loc.image}', '${loc.url}')">Learn More</button>
+                        <button class="learn-more-btn" id="btn-${loc.title.replace(/\s+/g, '-')}">Learn More</button>
                     </div>
                 `;
 
@@ -102,6 +101,16 @@ window.addEventListener("load", function() {
                 })
                 .bindPopup(popupHTML)
                 .addTo(map);
+
+                // Safe event targeting for asynchronously appended popup content layers
+                marker.on('popupopen', function() {
+                    const targetBtn = document.getElementById(`btn-${loc.title.replace(/\s+/g, '-')}`);
+                    if (targetBtn) {
+                        targetBtn.addEventListener('click', function() {
+                            openDetailOverlay(loc.title, loc.overlay_copy, loc.image, loc.url);
+                        });
+                    }
+                });
 
                 const listItem = document.createElement('li');
                 listItem.className = 'list-item';
