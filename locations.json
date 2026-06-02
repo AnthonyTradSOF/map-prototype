@@ -1,0 +1,30 @@
+[
+    {
+        "coords": [49.2827, -123.1207],
+        "title": "Downtown Vancouver",
+        "description": "The bustling core corporate district surrounded by harbor vistas.",
+        "url": "https://www.saveonfoods.com/",
+        "color": "#e74c3c"
+    },
+    {
+        "coords": [49.3000, -123.1400],
+        "title": "Stanley Park Seawall",
+        "description": "Scenic ocean-front public perimeter pathway looping the park forest.",
+        "url": "https://www.saveonfoods.com/circular",
+        "color": "#2ecc71"
+    },
+    {
+        "coords": [49.2768, -123.1252],
+        "title": "Yaletown Marina",
+        "description": "Trendy converted warehouse loft community resting on False Creek boat slips.",
+        "url": "https://www.saveonfoods.com/deals",
+        "color": "#3498db"
+    },
+    {
+        "coords": [49.1934, -123.1751],
+        "title": "YVR",
+        "description": "Vancouver International Airport (IATA: YVR, ICAO: CYVR) is an international airport located on Sea Island in Richmond, British Columbia, serving the city of Vancouver and the Lower Mainland region.",
+        "url": "https://www.saveonfoods.com/curated-flyer",
+        "color": "#000"
+    }
+]

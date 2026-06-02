@@ -1,0 +1,225 @@
+/* Core App Layout Window */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+    width: 100% !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#map {
+    width: 100% !important;
+    height: 100vh !important;
+    display: block;
+    background-color: #2c3e50;
+    z-index: 1;
+}
+
+/* Sidebar Floating Overlay Layout Container (Desktop Default) */
+#sidebar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 260px;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#sidebar h2 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    color: #2c3e50;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+}
+
+/* Interactive Drawer Toggle Pull-Tab (Hidden on Desktop) */
+.drawer-toggle {
+    display: none;
+}
+
+#location-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Individual Interactive List Items */
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #ffffff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #34495e;
+    border-left: 5px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+/* Inline Circular Indicator Dot (Hidden on Desktop viewports) */
+.item-color-dot {
+    display: none;
+}
+
+.list-item:hover {
+    transform: translateX(4px);
+    background: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Modal Popup & Action Button Styling */
+.popup-content {
+    max-width: 220px;
+    text-align: center;
+    padding: 4px;
+}
+
+.popup-content h3 {
+    margin: 4px 0 6px 0;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.popup-content p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+.popup-content a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #34495e;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.popup-content a:hover {
+    background-color: #2c3e50;
+}
+
+/* Hide Leaflet bottom attribution layer dynamically */
+.leaflet-bottom {
+    display: none;
+}
+
+/* =================================================================
+   MOBILE RESPONSIVE ENGINE RULES (Screens under 768px)
+   ================================================================= */
+@media (max-width: 768px) {
+    html, body {
+        position: fixed;
+        overflow: hidden;
+    }
+
+    /* Transform sidebar into a sliding bottom sheet drawer */
+    #sidebar {
+        top: auto;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        max-height: 40vh;
+        box-sizing: border-box;
+        border-radius: 24px 24px 0 0;
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+        padding: 0 20px 20px 20px;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.92);
+        overflow-y: visible;
+    }
+
+    /* Style the collapsible UI action handle container */
+    .drawer-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 28px;
+        cursor: pointer;
+    }
+
+    /* The visual pill-shaped pull-tab indicator */
+    .drawer-toggle::before {
+        content: '';
+        width: 44px;
+        height: 5px;
+        background-color: #bdc3c7;
+        border-radius: 3px;
+        transition: background-color 0.2s ease;
+    }
+
+    .drawer-toggle:active::before {
+        background-color: #7f8c8d;
+    }
+
+    #sidebar h2 {
+        font-size: 16px;
+        margin: 0 0 12px 0;
+    }
+
+    /* Arrange location list into a swipeable horizontal strip */
+    #location-list {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch; 
+        scrollbar-width: none; 
+    }
+
+    #location-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Transform list nodes into thumb-friendly carousel cards */
+    .list-item {
+        flex: 0 0 190px;
+        margin-bottom: 0;
+        padding: 14px;
+        border-left: none; /* Strip border on mobile */
+        border-bottom: 5px solid #ccc; /* Keep color strip at bottom card edge */
+        box-sizing: border-box;
+        font-size: 13px;
+    }
+
+    /* Make the circular icon dot visible on mobile layout viewports */
+    .item-color-dot {
+        display: block;
+        width: 10px;
+        height: 10px;
+        min-width: 10px;
+        border-radius: 50%;
+        margin-right: 8px; /* Gap between dot and card text */
+    }
+
+    .list-item:hover {
+        transform: none;
+    }
+
+    /* CSS Class triggered by JavaScript to collapse the sheet */
+    #sidebar.collapsed {
+        transform: translateY(calc(100% - 28px));
+    }
+
+    /* Relocate zoom control layout node so it never overlaps the sheet */
+    .leaflet-top {
+        top: 16px !important;
+    }
+}
