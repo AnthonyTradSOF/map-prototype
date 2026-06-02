@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
     // 2. Initialize map and eliminate mobile touch latency glitches
     const map = L.map('map', {
         zoomControl: false,
-        tap: false // Resolves native touch event delay frameworks on mobile
+        tap: false 
     }).setView([49.2827, -123.1207], 13);
     
     L.control.zoom({
@@ -37,12 +37,10 @@ window.addEventListener("load", function() {
     // =================================================================
     const sidebar = document.getElementById('sidebar');
     
-    // Programmatically insert the drawer toggle handle at the absolute top of the sidebar
     const toggleHandle = document.createElement('div');
     toggleHandle.className = 'drawer-toggle';
     sidebar.insertBefore(toggleHandle, sidebar.firstChild);
 
-    // Toggle collapse state when a mobile user clicks or taps the toggle handle
     toggleHandle.addEventListener('click', function() {
         sidebar.classList.toggle('collapsed');
     });
@@ -50,7 +48,32 @@ window.addEventListener("load", function() {
     const listContainer = document.getElementById('location-list');
 
     // =================================================================
-    // FEATURE 3: ASYNC FETCH DATA ENGINE & DYNAMIC VERTICAL CENTERING
+    // FULL-PAGE MODAL CONTROLLERS
+    // =================================================================
+    const detailOverlay = document.getElementById('detail-overlay');
+    const closeOverlayBtn = document.getElementById('overlay-close-btn');
+    const overlayImg = document.getElementById('overlay-img');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayDesc = document.getElementById('overlay-description');
+    const overlayLink = document.getElementById('overlay-external-link');
+
+    // Function to handle layout initialization and fade-in triggers
+    window.openDetailOverlay = function(title, longCopy, imageUrl, externalUrl) {
+        overlayTitle.innerText = title;
+        overlayDesc.innerText = longCopy; // Displays our dedicated unique copy string
+        overlayImg.src = imageUrl;
+        overlayLink.href = externalUrl;
+        
+        detailOverlay.classList.add('active');
+    };
+
+    // Close listener with built-in transition safety mechanics
+    closeOverlayBtn.addEventListener('click', function() {
+        detailOverlay.classList.remove('active');
+    });
+
+    // =================================================================
+    // FEATURE 3: ASYNC FETCH DATA ENGINE & INTERACTIVE MARKER MAPS
     // =================================================================
     fetch('locations.json')
         .then(response => {
@@ -61,11 +84,12 @@ window.addEventListener("load", function() {
         })
         .then(locations => {
             locations.forEach(loc => {
+                // FIXED: Changed template map string variables to route loc.overlay_copy parameters smoothly
                 const popupHTML = `
                     <div class="popup-content">
                         <h3>${loc.title}</h3>
                         <p>${loc.description}</p>
-                        <a href="${loc.url}" target="_blank" rel="noopener noreferrer">Learn More</a>
+                        <button class="learn-more-btn" onclick="openDetailOverlay('${loc.title.replace(/'/g, "\\'")}', '${loc.overlay_copy.replace(/'/g, "\\'")}', '${loc.image}', '${loc.url}')">Learn More</button>
                     </div>
                 `;
 
@@ -83,40 +107,30 @@ window.addEventListener("load", function() {
                 listItem.className = 'list-item';
                 listItem.style.borderLeftColor = loc.color;
 
-                // Create a colored circular icon indicator inside the item
                 const colorDot = document.createElement('span');
                 colorDot.className = 'item-color-dot';
                 colorDot.style.backgroundColor = loc.color;
 
-                // Create a text node container for the location title
                 const textLabel = document.createTextNode(loc.title);
 
-                // Construct the node tree hierarchy
                 listItem.appendChild(colorDot);
                 listItem.appendChild(textLabel);
 
-                // Handle responsive layout centering calculations on click
                 listItem.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
-                        
-                        // 1. Instantly center the map on the raw coordinates at our target zoom
                         map.setView(loc.coords, 14, { animate: false });
 
-                        // 2. Figure out how much space the drawer takes up on screen right now
                         const drawerHeight = sidebar.offsetHeight;
                         const pullTabHeight = 28;
                         const activeDrawerPixels = sidebar.classList.contains('collapsed') ? pullTabHeight : drawerHeight;
 
-                        // 3. Shift the camera downward by half the drawer's height
                         const yOffset = activeDrawerPixels / 2;
                         map.panBy([0, yOffset], { animate: true, duration: 0.4 });
 
                     } else {
-                        // Standard absolute centering for desktop monitors
                         map.setView(loc.coords, 14, { animate: true, duration: 0.5 });
                     }
                     
-                    // Fire the marker popup right as the camera animation finishes
                     setTimeout(() => {
                         marker.openPopup();
                     }, 400);

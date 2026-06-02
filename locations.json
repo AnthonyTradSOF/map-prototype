@@ -3,28 +3,36 @@
         "coords": [49.2827, -123.1207],
         "title": "Downtown Vancouver",
         "description": "The bustling core corporate district surrounded by harbor vistas.",
-        "url": "https://www.saveonfoods.com/",
+        "overlay_copy": "Welcome to the heart of the city. Downtown Vancouver sits on a peninsula surrounded by the Burrard Inlet and False Creek. This zone acts as the central business, cultural, and entertainment hub of the Lower Mainland, featuring striking skyscrapers alongside historic landmarks like Gastown.",
+        "url": "https://saveonfoods.com",
+        "image": "https://unsplash.com",
         "color": "#e74c3c"
     },
     {
         "coords": [49.3000, -123.1400],
         "title": "Stanley Park Seawall",
         "description": "Scenic ocean-front public perimeter pathway looping the park forest.",
-        "url": "https://www.saveonfoods.com/circular",
+        "overlay_copy": "Constructed over several decades starting in 1917, the Seawall was built to prevent coastal erosion along the park's perimeter. Today, it stands as the world's longest uninterrupted waterfront path, drawing millions of cyclists, runners, and walkers looking for panoramic mountain vistas.",
+        "url": "https://saveonfoods.comcircular",
+        "image": "https://unsplash.com",
         "color": "#2ecc71"
     },
     {
         "coords": [49.2768, -123.1252],
         "title": "Yaletown Marina",
         "description": "Trendy converted warehouse loft community resting on False Creek boat slips.",
-        "url": "https://www.saveonfoods.com/deals",
+        "overlay_copy": "Once an industrial rail yard packed with textile factories, Yaletown underwent a massive urban revitalization project in the late 20th century. Old loading bays were reimagined into trendy patios, upscale dining lounges, boutique shops, and a premier marina system.",
+        "url": "https://saveonfoods.comdeals",
+        "image": "https://unsplash.com",
         "color": "#3498db"
     },
     {
         "coords": [49.1934, -123.1751],
         "title": "YVR",
         "description": "Vancouver International Airport (IATA: YVR, ICAO: CYVR) is an international airport located on Sea Island in Richmond, British Columbia, serving the city of Vancouver and the Lower Mainland region.",
-        "url": "https://www.saveonfoods.com/curated-flyer",
+        "overlay_copy": "YVR serves as a primary international gateway connecting North America to the Asia-Pacific region. This specialized architectural simulation maps out regional logistics and spatial zoning metrics, overlaying native infrastructure frameworks onto local agrarian landscape basemaps.",
+        "url": "https://saveonfoods.comcurated-flyer",
+        "image": "https://unsplash.com",
         "color": "#000"
     }
 ]
