@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematic 2D Scroll Experience</title>
+    
+    <!-- GSAP (Core animation engine) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- ScrollTrigger (Binds animations to scroll position) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Lenis (Normalizes mouse wheels for smooth scrolling) -->
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        /* Smooth scrolling setup */
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+        .lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        /* Section Layouts */
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-align: center;
+        }
+
+        /* Reveal Section */
+        .reveal-section {
+            background-color: #141414;
+            flex-direction: column;
+        }
+        .image-container {
+            width: 80%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+            /* Start with a small mask clipped via CSS */
+            clip-path: inset(20% 30% 20% 30% rounded 10px);
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            scale: 1.3; /* Scale up slightly for a zoom out effect */
+        }
+        .reveal-text {
+            font-size: 2.5rem;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Footer Pinning Section */
+        .outro {
+            background-color: #0b0b0b;
+        }
+        .outro p {
+            font-size: 2rem;
+            max-width: 600px;
+            text-align: center;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1: HERO -->
+    <section class="hero">
+        <h1 class="hero-title">Motion Website</h1>
+    </section>
+
+    <!-- SECTION 2: THE IMAGE REVEAL -->
+    <section class="reveal-section">
+        <div class="image-container">
+            <!-- Using a high-quality placeholder image -->
+            <img src="https://images.unsplash.com/photo-1422466654108-5e533f591881" alt="Cinematic Landscape">
+        </div>
+        <p class="reveal-text">Clipping Path on Image</p>
+    </section>
+
+    <!-- SECTION 3: OUTRO -->
+    <section class="outro">
+        <p class="outro-text">Text that fades in</p>
+    </section>
+
+    <script>
+        // 1. Initialize Lenis Smooth Scrolling
+        const lenis = new Lenis();
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // Register ScrollTrigger Plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 2. Hero Text Animation
+        gsap.to(".hero-title", {
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true // Locks animation directly to the scrollbar
+            },
+            yPercent: -50,
+            opacity: 0,
+            scale: 0.9
+        });
+
+        // 3. Image Mask Reveal & Zoom Out (The "3D-like" effect)
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".reveal-section",
+                start: "top center", // Animation starts when section top hits screen center
+                end: "center center", // Reaches full size when centered
+                scrub: 1 // Adds a 1-second catch-up delay for ultra-smoothness
+            }
+        });
+
+        tl.to(".image-container", {
+            clipPath: "inset(0% 0% 0% 0% rounded 0px)", // Expands image to full width/height
+        })
+        .to(".image-container img", {
+            scale: 1 // Scales image down back to native size
+        }, 0) // "0" ensures both animations happen at the exact same time
+        .to(".reveal-text", {
+            opacity: 1,
+            y: 0,
+            duration: 0.5
+        });
+
+        // 4. Outro Text Fade and Slide Up Animation
+gsap.from(".outro-text", {
+    scrollTrigger: {
+        trigger: ".outro",
+        start: "top 80%", // Animation starts when the top of the outro section is 80% down the screen
+        end: "center center", // Reaches full opacity when the section is centered
+        scrub: 1 // Ties the animation smoothly to the scroll speed
+    },
+    opacity: 0,
+    y: 50, // Starts 50 pixels lower and slides up
+    duration: 1
+});
+
+
+    </script>
+</body>
+</html>

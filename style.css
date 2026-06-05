@@ -382,3 +382,12 @@ html, body {
     }
 }
 
+.outro p {
+    font-size: 2rem;
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.5;
+    opacity: 0; /* Add this: Keeps it hidden until scroll activates */
+}
+
+
