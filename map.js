@@ -10,7 +10,7 @@ window.addEventListener("load", function() {
     const map = L.map('map', {
         zoomControl: false,
         tap: false 
-    }).setView([49.2827, -123.1207], 13);
+    });
     
     L.control.zoom({
         position: 'topright'
@@ -20,17 +20,64 @@ window.addEventListener("load", function() {
         maxZoom: 20
     }).addTo(map);
 
-    const vancouverBounds = [
-        [49.2720, -123.1350], 
-        [49.2920, -123.1050]  
-    ];
-    
+    // Asset definitions
     const overlayUrl = 'https://unsplash.com';
-    
-    L.imageOverlay(overlayUrl, vancouverBounds, {
-        opacity: 0.5,
-        interactive: true
-    }).addTo(map);
+    let imageOverlayInstance = null;
+
+    // Helper function to dynamically calculate a bounding box around any point
+    function createDynamicBounds(lat, lng, offset = 0.01) {
+        return [
+            [lat - offset, lng - offset], // Southwest corner
+            [lat + offset, lng + offset]  // Northeast corner
+        ];
+    }
+
+    // =================================================================
+    // GEOLOCATION ENGINE & DYNAMIC OVERLAY GENERATION
+    // =================================================================
+    map.on('locationfound', function(e) {
+        console.log(`User located at: ${e.latlng}`);
+        
+        // 1. Plot a custom marker at the user's explicit device location
+        L.circleMarker(e.latlng, {
+            radius: 8,
+            fillColor: '#007bef',
+            color: '#ffffff',
+            weight: 2,
+            fillOpacity: 0.9
+        }).addTo(map).bindPopup("You are here");
+
+        // 2. Dynamically project the image overlay surrounding the user
+        const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
+        
+        imageOverlayInstance = L.imageOverlay(overlayUrl, dynamicBounds, {
+            opacity: 0.5,
+            interactive: true
+        }).addTo(map);
+    });
+
+    map.on('locationerror', function(e) {
+        console.warn("Geolocation failed or denied. Falling back to Vancouver defaults.", e.message);
+        
+        // Fallback View mapping
+        const fallbackLat = 49.2827;
+        const fallbackLng = -123.1207;
+        map.setView([fallbackLat, fallbackLng], 13);
+
+        // Fallback Static Vancouver Bounds placement
+        const vancouverBounds = [
+            [49.2720, -123.1350], 
+            [49.2920, -123.1050]  
+        ];
+
+        imageOverlayInstance = L.imageOverlay(overlayUrl, vancouverBounds, {
+            opacity: 0.5,
+            interactive: true
+        }).addTo(map);
+    });
+
+    // Fire browser prompt request for target location tracking
+    map.locate({ setView: true, maxZoom: 13 });
 
     // =================================================================
     // RESPONSIVE FEATURE: INJECT PULL-TAB INJECTOR MECHANICS
