@@ -6,7 +6,7 @@
         "overlay_copy": "Consectetur adipiscing elit. Mauris condimentum velit eu tellus mattis, vitae faucibus lorem auctor. Donec bibendum eros vel orci lacinia, id porttitor felis varius. Consectetur adipiscing elit. Mauris condimentum velit eu tellus mattis, vitae faucibus lorem auctor. Donec bibendum eros vel orci lacinia, id porttitor felis varius",
         "url": "https://saveonfoods.com",
         "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
-        "color": "#e74c3c"
+        "color": "#65A11B"
     },
     {
         "coords": [49.3000, -123.1400],
@@ -15,7 +15,7 @@
         "overlay_copy": "Sed sed fringilla lectus. Ut aliquam lacinia placerat. Maecenas non nulla eget ligula sollicitudin fermentum et eu dolor. Donec ut augue euismod, semper tellus vel, porta mauris. Donec faucibus risus non nibh iaculis, nec mollis nisi tempus. Sed sed fringilla lectus. Ut aliquam lacinia placerat. Maecenas non nulla eget ligula sollicitudin fermentum et eu dolor. Donec ut augue euismod, semper tellus vel, porta mauris. Donec faucibus risus non nibh iaculis, nec mollis nisi tempus.",
         "url": "https://saveonfoods.com/circular",
         "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
-        "color": "#2ecc71"
+        "color": "#65A11B"
     },
     {
         "coords": [49.2768, -123.1252],
@@ -24,7 +24,7 @@
         "overlay_copy": "Vestibulum at augue a ante posuere porta. Aenean sed convallis nibh, nec porta nunc. Vivamus consequat urna ac risus maximus, quis accumsan lacus imperdiet. Integer pulvinar nunc eget metus ornare, fermentum hendrerit ex fringilla. Integer tristique enim vitae mauris ultrices, eget iaculis lorem eleifend. Vestibulum at augue a ante posuere porta. Aenean sed convallis nibh, nec porta nunc. Vivamus consequat urna ac risus maximus, quis accumsan lacus imperdiet. Integer pulvinar nunc eget metus ornare, fermentum hendrerit ex fringilla. Integer tristique enim vitae mauris ultrices, eget iaculis lorem eleifend.",
         "url": "https://saveonfoods.com/deals",
         "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
-        "color": "#3498db"
+        "color": "#65A11B"
     },
     {
         "coords": [49.1934, -123.1751],
@@ -33,6 +33,6 @@
         "overlay_copy": "Aliquam pharetra, tellus ac dictum sagittis, nulla nisi aliquam nibh, vel fringilla nunc neque vel purus. Aliquam quis rutrum turpis. Morbi ornare neque convallis fermentum accumsan. Sed ultricies nulla non lorem consectetur, vel eleifend sapien ullamcorper. Aliquam pharetra, tellus ac dictum sagittis, nulla nisi aliquam nibh, vel fringilla nunc neque vel purus. Aliquam quis rutrum turpis. Morbi ornare neque convallis fermentum accumsan. Sed ultricies nulla non lorem consectetur, vel eleifend sapien ullamcorper.",
         "url": "https://saveonfoods.com/curated-flyer",
         "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
-        "color": "#000"
+        "color": "#65A11B"
     }
 ]
