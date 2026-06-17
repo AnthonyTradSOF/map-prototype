@@ -11,13 +11,8 @@ window.addEventListener("load", function() {
         tap: false 
     });
     
-    L.control.zoom({
-        position: 'topright'
-    }).addTo(map);
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-        maxZoom: 20
-    }).addTo(map);
+    L.control.zoom({ position: 'topright' }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', { maxZoom: 20 }).addTo(map);
 
     // Asset definitions
     const overlayUrl = 'https://unsplash.com';
@@ -33,8 +28,6 @@ window.addEventListener("load", function() {
 
     // GEOLOCATION ENGINE & DYNAMIC OVERLAY GENERATION
     map.on('locationfound', function(e) {
-        console.log(`User located at: ${e.latlng}`);
-        
         // 1. Plot a custom marker at the user's explicit device location
         L.circleMarker(e.latlng, {
             radius: 8,
@@ -46,7 +39,6 @@ window.addEventListener("load", function() {
 
         // 2. Dynamically project the image overlay surrounding the user
         const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
-        
         imageOverlayInstance = L.imageOverlay(overlayUrl, dynamicBounds, {
             opacity: 0.5,
             interactive: true
@@ -54,31 +46,27 @@ window.addEventListener("load", function() {
     });
 
     map.on('locationerror', function(e) {
-        console.warn("Geolocation failed or denied. Falling back to British Columbia defaults.", e.message);
-        
         // Fallback View mapping: Centered in BC with a wide zoom level (5)
         const fallbackLat = 53.7267;
         const fallbackLng = -127.6476;
         map.setView([fallbackLat, fallbackLng], 5);
-    
+
         // Fallback Static BC Bounds placement (Southwest corner to Northeast corner)
         const bcBounds = [
             [48.3000, -139.0000], // Southwest boundary (includes Vancouver Island / Haida Gwaii)
             [60.0000, -114.0000]  // Northeast boundary (Alberta / NWT border)
         ];
-    
         imageOverlayInstance = L.imageOverlay(overlayUrl, bcBounds, {
             opacity: 0.5,
             interactive: true
         }).addTo(map);
     });
-    
+
     // Fire browser prompt request for target location tracking
     map.locate({ setView: true, maxZoom: 11 });
 
     // RESPONSIVE FEATURE: INJECT PULL-TAB INJECTOR MECHANICS
     const sidebar = document.getElementById('sidebar');
-    
     const toggleHandle = document.createElement('div');
     toggleHandle.className = 'drawer-toggle';
     sidebar.insertBefore(toggleHandle, sidebar.firstChild);
@@ -96,7 +84,6 @@ window.addEventListener("load", function() {
     const overlayTitle = document.getElementById('overlay-title');
     const overlayDesc = document.getElementById('overlay-description');
     const overlayLink = document.getElementById('overlay-external-link');
-
     let localDataStorageArray = [];
 
     // Global intercept method to map, cache, and fire overlay window transitions
@@ -108,8 +95,8 @@ window.addEventListener("load", function() {
         overlayDesc.innerText = selectedPoint.overlay_copy; // Populates dedicated unique text block
         overlayImg.src = selectedPoint.image;
         overlayLink.href = selectedPoint.url;
-
         detailOverlay.style.display = 'flex';
+
         // Minor timeout ensures layout registers before applying opacity transitions
         setTimeout(() => {
             detailOverlay.classList.add('active');
@@ -136,7 +123,8 @@ window.addEventListener("load", function() {
             localDataStorageArray = locations; // Populate structural storage arrays safely
 
             locations.forEach((loc, index) => {
-                const popupHTML = `<div class="popup-content">
+                const popupHTML = `
+                    <div class="popup-content">
                         <h3>${loc.title}</h3>
                         <p>${loc.description}</p>
                         <button class="learn-more-btn" onclick="window.launchFullScreenOverlay(${index})">Learn More</button>
@@ -161,30 +149,32 @@ window.addEventListener("load", function() {
                 colorDot.style.backgroundColor = loc.color;
 
                 const textLabel = document.createTextNode(loc.title);
-
                 listItem.appendChild(colorDot);
                 listItem.appendChild(textLabel);
 
                 listItem.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         map.setView(loc.coords, 14, { animate: false });
-                
+
                         const drawerHeight = sidebar.offsetHeight;
                         const pullTabHeight = 28;
                         const activeDrawerPixels = sidebar.classList.contains('collapsed') ? pullTabHeight : drawerHeight;
-                
                         const yOffset = activeDrawerPixels / 2;
+
                         map.panBy([0, yOffset], { animate: true, duration: 0.4 });
-                
+
+                        setTimeout(() => {
+                            marker.openPopup();
+                        }, 400);
                     } else {
                         // 1. Calculate physical distance in meters between current map center and target marker
                         const currentCenter = map.getCenter();
                         const targetLatLng = L.latLng(loc.coords);
                         const distanceInMeters = currentCenter.distanceTo(targetLatLng);
-                
+
                         // 2. Set an threshold (e.g., 80 kilometers = 80000 meters)
                         const thresholdMeters = 80000; 
-                
+
                         if (distanceInMeters > thresholdMeters) {
                             // Cut instantly if too far away to prevent browser tile-loading lag
                             map.setView(loc.coords, 14, { animate: false });
@@ -193,23 +183,22 @@ window.addEventListener("load", function() {
                         } else {
                             // Execute the smooth flyover for nearby local points
                             map.flyTo(loc.coords, 14, {
-                                animate: true,
+                                animate: true, 
                                 duration: 1.2, // Snappier timing reduces rendering overhead
                                 easeLinearity: 0.25
                             });
-                            
+
                             setTimeout(() => {
                                 marker.openPopup();
                             }, 1200);
                         }
                     }
-                });                
-                
+                });
+
                 listContainer.appendChild(listItem);
             });
         })
         .catch(error => {
-            console.error("Could not load map configuration points:", error);
             listContainer.innerHTML = `<li style="color: red; padding: 10px;">Error loading data asset</li>`;
         });
 });
