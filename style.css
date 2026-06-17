@@ -223,7 +223,7 @@ html, body {
 /* External secondary redirection button style */
 #overlay-external-link {
     align-self: flex-start;
-    display: inline-block;
+    display: none;
     padding: 12px 28px;
     background-color: #34495e;
     color: #ffffff;

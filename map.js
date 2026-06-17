@@ -1,5 +1,4 @@
 window.addEventListener("load", function() {
-    
     // 1. Safety verification catch
     if (typeof L === 'undefined') {
         console.error("Leaflet failed to load from unpkg. Check network access or firewall.");
@@ -32,9 +31,7 @@ window.addEventListener("load", function() {
         ];
     }
 
-    // =================================================================
     // GEOLOCATION ENGINE & DYNAMIC OVERLAY GENERATION
-    // =================================================================
     map.on('locationfound', function(e) {
         console.log(`User located at: ${e.latlng}`);
         
@@ -45,7 +42,7 @@ window.addEventListener("load", function() {
             color: '#ffffff',
             weight: 2,
             fillOpacity: 0.9
-        }).addTo(map).bindPopup("You are here");
+        }).addTo(map);
 
         // 2. Dynamically project the image overlay surrounding the user
         const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
@@ -77,11 +74,9 @@ window.addEventListener("load", function() {
     });
     
     // Fire browser prompt request for target location tracking
-    map.locate({ setView: true, maxZoom: 13 });
+    map.locate({ setView: true, maxZoom: 11 });
 
-    // =================================================================
     // RESPONSIVE FEATURE: INJECT PULL-TAB INJECTOR MECHANICS
-    // =================================================================
     const sidebar = document.getElementById('sidebar');
     
     const toggleHandle = document.createElement('div');
@@ -94,9 +89,7 @@ window.addEventListener("load", function() {
 
     const listContainer = document.getElementById('location-list');
 
-    // =================================================================
     // FULL-PAGE INTERACTIVE DETAIL OVERLAY CAPTURING LOGIC
-    // =================================================================
     const detailOverlay = document.getElementById('detail-overlay');
     const closeOverlayBtn = document.getElementById('overlay-close-btn');
     const overlayImg = document.getElementById('overlay-img');
@@ -131,9 +124,7 @@ window.addEventListener("load", function() {
         }, 400); // 400ms match duration time for fading out CSS sheet completely
     });
 
-    // =================================================================
     // FEATURE 3: ASYNC FETCH DATA ENGINE & VERTICAL CENTER ROUTING
-    // =================================================================
     fetch('locations.json')
         .then(response => {
             if (!response.ok) {
@@ -145,14 +136,11 @@ window.addEventListener("load", function() {
             localDataStorageArray = locations; // Populate structural storage arrays safely
 
             locations.forEach((loc, index) => {
-                // Fixed index routing prevents string breakdown inside the loop template
-                const popupHTML = `
-                    <div class="popup-content">
+                const popupHTML = `<div class="popup-content">
                         <h3>${loc.title}</h3>
                         <p>${loc.description}</p>
                         <button class="learn-more-btn" onclick="window.launchFullScreenOverlay(${index})">Learn More</button>
-                    </div>
-                `;
+                    </div>`;
 
                 const marker = L.circleMarker(loc.coords, {
                     radius: 12,
@@ -180,23 +168,43 @@ window.addEventListener("load", function() {
                 listItem.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         map.setView(loc.coords, 14, { animate: false });
-
+                
                         const drawerHeight = sidebar.offsetHeight;
                         const pullTabHeight = 28;
                         const activeDrawerPixels = sidebar.classList.contains('collapsed') ? pullTabHeight : drawerHeight;
-
+                
                         const yOffset = activeDrawerPixels / 2;
                         map.panBy([0, yOffset], { animate: true, duration: 0.4 });
-
+                
                     } else {
-                        map.setView(loc.coords, 14, { animate: true, duration: 0.5 });
+                        // 1. Calculate physical distance in meters between current map center and target marker
+                        const currentCenter = map.getCenter();
+                        const targetLatLng = L.latLng(loc.coords);
+                        const distanceInMeters = currentCenter.distanceTo(targetLatLng);
+                
+                        // 2. Set an threshold (e.g., 80 kilometers = 80000 meters)
+                        const thresholdMeters = 80000; 
+                
+                        if (distanceInMeters > thresholdMeters) {
+                            // Cut instantly if too far away to prevent browser tile-loading lag
+                            map.setView(loc.coords, 14, { animate: false });
+                            marker.openPopup();
+                            return; // Exit function immediately
+                        } else {
+                            // Execute the smooth flyover for nearby local points
+                            map.flyTo(loc.coords, 14, {
+                                animate: true,
+                                duration: 1.2, // Snappier timing reduces rendering overhead
+                                easeLinearity: 0.25
+                            });
+                            
+                            setTimeout(() => {
+                                marker.openPopup();
+                            }, 1200);
+                        }
                     }
-                    
-                    setTimeout(() => {
-                        marker.openPopup();
-                    }, 400);
-                });
-
+                });                
+                
                 listContainer.appendChild(listItem);
             });
         })

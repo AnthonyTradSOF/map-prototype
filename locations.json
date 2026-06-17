@@ -1,38 +1,34 @@
 [
     {
-        "coords": [49.2827, -123.1207],
-        "title": "Farm 1",
-        "description": "Lorem ipsum dolor sit amet",
-        "overlay_copy": "Consectetur adipiscing elit. Mauris condimentum velit eu tellus mattis, vitae faucibus lorem auctor. Donec bibendum eros vel orci lacinia, id porttitor felis varius. Consectetur adipiscing elit. Mauris condimentum velit eu tellus mattis, vitae faucibus lorem auctor. Donec bibendum eros vel orci lacinia, id porttitor felis varius",
-        "url": "https://saveonfoods.com",
+        "coords": [49.09019626543715, -122.93529071632766],
+        "title": "Fresh4Sunset",
+        "description": "For 25 years, Fresh4Sunset has been growing strawberries in Delta, BC.",
+        "overlay_copy": "For 25 years, Fresh4Sunset has been growing strawberries in Delta, BC. That experience shows in every berry: ripe, juicy, and full of just-picked flavour. Grown by Grin and Ravi Cheema for SUNSET®, these local strawberries land fresh in the Save-On-Foods produce aisle. Real strawberries, grown close to home, picked at their best.",
         "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
         "color": "#65A11B"
     },
     {
-        "coords": [49.3000, -123.1400],
-        "title": "Farm 2",
-        "description": "Suspendisse aliquet nec lacus ac tincidunt. Ut ut lectus sed odio lobortis tincidunt sit amet vitae lorem.",
-        "overlay_copy": "Sed sed fringilla lectus. Ut aliquam lacinia placerat. Maecenas non nulla eget ligula sollicitudin fermentum et eu dolor. Donec ut augue euismod, semper tellus vel, porta mauris. Donec faucibus risus non nibh iaculis, nec mollis nisi tempus. Sed sed fringilla lectus. Ut aliquam lacinia placerat. Maecenas non nulla eget ligula sollicitudin fermentum et eu dolor. Donec ut augue euismod, semper tellus vel, porta mauris. Donec faucibus risus non nibh iaculis, nec mollis nisi tempus.",
-        "url": "https://saveonfoods.com/circular",
-        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
+        "coords": [49.0698440357278, -123.10898733166778],
+        "title": "Windset Farms",
+        "description": "Windset Farms’ state-of-the-art greenhouse facilities deliver nutrient-rich, flavorful produce for Canadians year-round.",
+        "overlay_copy": "Headquartered in Delta, British Columbia, Windset Farms' state-of-the-art greenhouse facilities deliver nutrient-rich, flavorful produce for Canadians year-round including tomatoes, peppers, cucumbers, and specialty items. With a commitment to quality, sustainability, and innovation, Windset Farms has proudly been Your Friends in Freshness® for over three decades.",
+        "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/windset-farm.jpg",
         "color": "#65A11B"
     },
     {
-        "coords": [49.2768, -123.1252],
-        "title": "Farm 3",
-        "description": "Donec ut nunc arcu. Curabitur bibendum felis ut orci feugiat tristique.",
-        "overlay_copy": "Vestibulum at augue a ante posuere porta. Aenean sed convallis nibh, nec porta nunc. Vivamus consequat urna ac risus maximus, quis accumsan lacus imperdiet. Integer pulvinar nunc eget metus ornare, fermentum hendrerit ex fringilla. Integer tristique enim vitae mauris ultrices, eget iaculis lorem eleifend. Vestibulum at augue a ante posuere porta. Aenean sed convallis nibh, nec porta nunc. Vivamus consequat urna ac risus maximus, quis accumsan lacus imperdiet. Integer pulvinar nunc eget metus ornare, fermentum hendrerit ex fringilla. Integer tristique enim vitae mauris ultrices, eget iaculis lorem eleifend.",
-        "url": "https://saveonfoods.com/deals",
-        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
+        "coords": [53.67052344985447, -116.1523808314547],
+        "title": "Hillsight Vegetables Inc.",
+        "description": "Hank Fousert immigrated to Yellowhead County, AB from the Netherlands in 1966, establishing Hillsight Vegetables INC.",
+        "overlay_copy": "Hank Fousert immigrated to Yellowhead County, AB from the Netherlands in 1966, establishing Hillsight Vegetables INC. Currently farming Beets and Rutabagas on over 200 acres, the Fousert Family has 3 generations involved in all aspects of the business. Hillsight Vegetables INC is committed to sustainable farming for generations to come.",
+        "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/SunFreshFarms.jpg",
         "color": "#65A11B"
     },
     {
-        "coords": [49.1934, -123.1751],
-        "title": "Farm 4",
-        "description": "Ut in mauris lectus. Donec imperdiet ipsum id urna congue suscipit.",
-        "overlay_copy": "Aliquam pharetra, tellus ac dictum sagittis, nulla nisi aliquam nibh, vel fringilla nunc neque vel purus. Aliquam quis rutrum turpis. Morbi ornare neque convallis fermentum accumsan. Sed ultricies nulla non lorem consectetur, vel eleifend sapien ullamcorper. Aliquam pharetra, tellus ac dictum sagittis, nulla nisi aliquam nibh, vel fringilla nunc neque vel purus. Aliquam quis rutrum turpis. Morbi ornare neque convallis fermentum accumsan. Sed ultricies nulla non lorem consectetur, vel eleifend sapien ullamcorper.",
-        "url": "https://saveonfoods.com/curated-flyer",
-        "image": "https://plus.unsplash.com/premium_photo-1661811677567-6f14477aa1fa",
+        "coords": [49.082400621989095, -123.01968100283237],
+        "title": "BCfresh",
+        "description": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia",
+        "overlay_copy": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia, primarily located in the Lower Mainland’s rich agricultural region. Together, our growers cultivate more than 7,500 acres annually, producing over 200 million pounds of fresh produce each year. That’s equivalent to more than 1 billion servings of root and field vegetables or about 35 pounds for every British Columbian.",
+        "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/bcfresh.jpg",
         "color": "#65A11B"
     }
 ]
