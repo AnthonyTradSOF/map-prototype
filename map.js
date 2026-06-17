@@ -45,7 +45,7 @@ window.addEventListener("load", function() {
             color: '#ffffff',
             weight: 2,
             fillOpacity: 0.9
-        }).addTo(map).bindPopup("You are here");
+        }).addTo(map);
 
         // 2. Dynamically project the image overlay surrounding the user
         const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
@@ -57,27 +57,27 @@ window.addEventListener("load", function() {
     });
 
     map.on('locationerror', function(e) {
-        console.warn("Geolocation failed or denied. Falling back to Vancouver defaults.", e.message);
+        console.warn("Geolocation failed or denied. Falling back to Western Canada defaults.", e.message);
         
-        // Fallback View mapping
-        const fallbackLat = 49.2827;
-        const fallbackLng = -123.1207;
-        map.setView([fallbackLat, fallbackLng], 13);
+        // Fallback View mapping: Centered in Western Canada (AB/Sask area) zoomed out to see the region
+        const fallbackLat = 53.0000;
+        const fallbackLng = -115.0000;
+        map.setView([fallbackLat, fallbackLng], 5); // Zoom 5 captures Western provinces beautifully
 
-        // Fallback Static Vancouver Bounds placement
-        const vancouverBounds = [
-            [49.2720, -123.1350], 
-            [49.2920, -123.1050]  
+        // Fallback Western Canada Bounds placement (From Pacific Coast to Manitoba border)
+        const westernCanadaBounds = [
+            [48.0000, -130.0000], // Southwest Corner (Pacific Ocean/US Border)
+            [60.0000, -95.0000]   // Northeast Corner (60th Parallel/Manitoba-Ontario Border)
         ];
 
-        imageOverlayInstance = L.imageOverlay(overlayUrl, vancouverBounds, {
+        imageOverlayInstance = L.imageOverlay(overlayUrl, westernCanadaBounds, {
             opacity: 0.5,
             interactive: true
         }).addTo(map);
     });
 
     // Fire browser prompt request for target location tracking
-    map.locate({ setView: true, maxZoom: 13 });
+    map.locate({ setView: true, maxZoom: 9 });
 
     // =================================================================
     // RESPONSIVE FEATURE: INJECT PULL-TAB INJECTOR MECHANICS
