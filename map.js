@@ -57,25 +57,25 @@ window.addEventListener("load", function() {
     });
 
     map.on('locationerror', function(e) {
-        console.warn("Geolocation failed or denied. Falling back to Vancouver defaults.", e.message);
+        console.warn("Geolocation failed or denied. Falling back to British Columbia defaults.", e.message);
         
-        // Fallback View mapping
-        const fallbackLat = 49.2827;
-        const fallbackLng = -123.1207;
-        map.setView([fallbackLat, fallbackLng], 13);
-
-        // Fallback Static Vancouver Bounds placement
-        const vancouverBounds = [
-            [49.2720, -123.1350], 
-            [49.2920, -123.1050]  
+        // Fallback View mapping: Centered in BC with a wide zoom level (5)
+        const fallbackLat = 53.7267;
+        const fallbackLng = -127.6476;
+        map.setView([fallbackLat, fallbackLng], 5);
+    
+        // Fallback Static BC Bounds placement (Southwest corner to Northeast corner)
+        const bcBounds = [
+            [48.3000, -139.0000], // Southwest boundary (includes Vancouver Island / Haida Gwaii)
+            [60.0000, -114.0000]  // Northeast boundary (Alberta / NWT border)
         ];
-
-        imageOverlayInstance = L.imageOverlay(overlayUrl, vancouverBounds, {
+    
+        imageOverlayInstance = L.imageOverlay(overlayUrl, bcBounds, {
             opacity: 0.5,
             interactive: true
         }).addTo(map);
     });
-
+    
     // Fire browser prompt request for target location tracking
     map.locate({ setView: true, maxZoom: 13 });
 
