@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials</title>
+  <style>
+    .testimonial-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      padding: 100px 20px;
+      box-sizing: border-box;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background-color: #161616;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bg-overlay {
+      position: absolute;
+      top:0; left:0; width:100%; height:100%;
+      background-image: url('https://unsplash.com');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.2); 
+      z-index: 1;
+    }
+    .slider-wrapper { position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .section-header h5 { color: #fff; font-size: 0.85rem; letter-spacing: 3px; margin: 0 0 10px 0; opacity: 0.7; }
+    .section-header h2 { color: #fff; font-size: 2.5rem; letter-spacing: 4px; margin: 0 0 80px 0; text-transform: uppercase; }
+    input[type="radio"] { display: none; }
+    
+    /* Desktop Row Engine */
+    .card-track {
+      display: flex;
+      justify-content: center;
+      gap: 80px 30px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .testimonial-card {
+      position: relative;
+      flex: 1 1 300px;
+      max-width: 360px;
+      border: 1px solid rgba(255, 255, 255, 0.4); 
+      padding: 60px 25px 40px 25px;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.4); 
+      /* Hide all cards completely by default */
+      display: none; 
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .avatar-wrap {
+      position: absolute; top: -45px; left: 50%; transform: translateX(-50%);
+      width: 90px; height: 90px; border-radius: 50%; overflow: hidden;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+    }
+    .avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonial-card .quote { color: #fff; font-size: 0.95rem; font-style: italic; line-height: 1.6; margin-bottom: 25px; min-height: 75px; }
+    .orange-divider { width: 35px; height: 3px; background-color: #ff9800; margin: 0 auto 25px auto; }
+    .testimonial-card .name { color: #fff; font-size: 1rem; margin: 0 0 5px 0; }
+    .testimonial-card .role { color: #aaa; font-size: 0.75rem; }
+
+    /* Dot Base Layout */
+    .slider-dots { display: flex; justify-content: center; gap: 12px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; background: transparent; cursor: pointer; transition: 0.3s; }
+    
+    /* Desktop Visibility Handlers */
+    .dot-3, .dot-4, .dot-5, .dot-6 { display: none; }
+
+    /* Group 1 Active Rules */
+    #slide1:checked ~ .slider-wrapper .item-1,
+    #slide1:checked ~ .slider-wrapper .item-2,
+    #slide1:checked ~ .slider-wrapper .item-3 { display: block; opacity: 1; transform: translateY(0); }
+    #slide1:checked ~ .slider-wrapper .slider-dots .dot-1 { background: #fff; transform: scale(1.2); }
+
+    /* Group 2 Active Rules */
+    #slide2:checked ~ .slider-wrapper .item-4,
+    #slide2:checked ~ .slider-wrapper .item-5,
+    #slide2:checked ~ .slider-wrapper .item-6 { display: block; opacity: 1; transform: translateY(0); }
+    #slide2:checked ~ .slider-wrapper .slider-dots .dot-2 { background: #fff; transform: scale(1.2); }
+
+    /* Mobile Layer Override Engine (< 900px) */
+    @media (max-width: 900px) {
+      .card-track { display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; max-width: 360px; margin: 0 auto 40px auto; gap: 0; }
+      .testimonial-card { grid-area: 1 / 1 !important; display: block !important; opacity: 0; pointer-events: none; transform: scale(0.95); }
+      .dot-3, .dot-4, .dot-5, .dot-6 { display: block; }
+
+      /* Mobile Toggles */
+      #slide1:checked ~ .slider-wrapper .item-1, #slide2:checked ~ .slider-wrapper .item-2,
+      #slide3:checked ~ .slider-wrapper .item-3, #slide4:checked ~ .slider-wrapper .item-4,
+      #slide5:checked ~ .slider-wrapper .item-5, #slide6:checked ~ .slider-wrapper .item-6 { opacity: 1; pointer-events: auto; transform: scale(1); z-index: 5; }
+
+      /* Mobile Highlights */
+      #slide1:checked ~ .slider-wrapper .slider-dots .dot-1, #slide2:checked ~ .slider-wrapper .slider-dots .dot-2,
+      #slide3:checked ~ .slider-wrapper .slider-dots .dot-3, #slide4:checked ~ .slider-wrapper .slider-dots .dot-4,
+      #slide5:checked ~ .slider-wrapper .slider-dots .dot-5, #slide6:checked ~ .slider-wrapper .slider-dots .dot-6 { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="testimonial-section">
+  <div class="bg-overlay"></div>
+  <input type="radio" name="slider" id="slide1" checked>
+  <input type="radio" name="slider" id="slide2">
+  <input type="radio" name="slider" id="slide3">
+  <input type="radio" name="slider" id="slide4">
+  <input type="radio" name="slider" id="slide5">
+  <input type="radio" name="slider" id="slide6">
+
+  <div class="slider-wrapper">
+    <div class="section-header">
+      <h5>WHAT PEOPLE SAY</h5>
+      <h2>TESTIMONIALS</h2>
+    </div>
+
+    <div class="card-track">
+      <div class="testimonial-card item-1">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">Greenora Organics is the best at providing farm management services!</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">MARGE CAT</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+      <div class="testimonial-card item-2">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">The fruits and vegetable we bought on this farm were fresh and delicious!</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">BRIANA SOPHY</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+      <div class="testimonial-card item-3">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">Never been more satisfied with the services provided by this company!</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">FLANNERY CLINT</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+      <div class="testimonial-card item-4">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">Their organic distribution setup saved our harvest delivery timelines completely.</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">DAVID MILLER</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+      <div class="testimonial-card item-5">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">The weekly fresh organic farm boxes are packed with incredible flavor!</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">ELENA ROSTOVA</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+      <div class="testimonial-card item-6">
+        <div class="avatar-wrap"><img src="https://unsplash.com" alt="Avatar"></div>
+        <p class="quote">Unmatched eco sustainability. They set the global standard for modern farming.</p>
+        <div class="orange-divider"></div>
+        <h4 class="name">MARCUS VANCE</h4>
+        <span class="role">CUSTOMER</span>
+      </div>
+    </div>
+
+    <div class="slider-dots">
+      <label for="slide1" class="dot dot-1"></label>
+      <label for="slide2" class="dot dot-2"></label>
+      <label for="slide3" class="dot dot-3"></label>
+      <label for="slide4" class="dot dot-4"></label>
+      <label for="slide5" class="dot dot-5"></label>
+      <label for="slide6" class="dot dot-6"></label>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

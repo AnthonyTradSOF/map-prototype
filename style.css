@@ -390,4 +390,16 @@ html, body {
     opacity: 0; /* Add this: Keeps it hidden until scroll activates */
 }
 
+/* Overlay styles Mobile + Tablet */
+@media screen and (max-width: 1024px) {
+    #overlay-title {
+        margin: 0 0 12px 0;
+        font-size: 20px;
+    }
 
+    #overlay-description {
+        margin: 0 0 16px 0;
+        font-size: 14px;
+        line-height: 1.3;
+    }
+}
