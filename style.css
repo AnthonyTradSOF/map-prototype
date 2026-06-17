@@ -151,8 +151,8 @@ html, body {
 /* Floating top right close action cross button layout */
 #overlay-close-btn {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
     color: #ffffff;
@@ -173,7 +173,7 @@ html, body {
     display: flex;
     width: 84%;
     /*max-width: 960px;*/
-    height: 70vh;
+    height: 75vh;
     max-height: 600px;
     background-color: #ffffff;
     border-radius: 16px;
@@ -344,8 +344,8 @@ html, body {
 
     /* Overlay mobile dimensions */
     #overlay-close-btn {
-        top: 16px;
-        right: 20px;
+        top: 10px;
+        right: 10px;
         font-size: 36px;
     }
 
