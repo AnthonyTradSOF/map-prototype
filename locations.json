@@ -30,5 +30,13 @@
         "overlay_copy": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia, primarily located in the Lower Mainland’s rich agricultural region. Together, our growers cultivate more than 7,500 acres annually, producing over 200 million pounds of fresh produce each year. That’s equivalent to more than 1 billion servings of root and field vegetables or about 35 pounds for every British Columbian.",
         "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/bcfresh.jpg",
         "color": "#65A11B"
+    },
+    {
+        "coords": [49.082400621989095, -123.01968100283237],
+        "title": "BCfresh2",
+        "description": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia",
+        "overlay_copy": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia, primarily located in the Lower Mainland’s rich agricultural region. Together, our growers cultivate more than 7,500 acres annually, producing over 200 million pounds of fresh produce each year. That’s equivalent to more than 1 billion servings of root and field vegetables or about 35 pounds for every British Columbian.",
+        "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/bcfresh.jpg",
+        "color": "#65A11B"
     }
 ]
