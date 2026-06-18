@@ -30,5 +30,13 @@
         "overlay_copy": "BCfresh is a grower-owned and operated company representing over 70 family farms across British Columbia, primarily located in the Lower Mainland’s rich agricultural region. Together, our growers cultivate more than 7,500 acres annually, producing over 200 million pounds of fresh produce each year. That’s equivalent to more than 1 billion servings of root and field vegetables or about 35 pounds for every British Columbian.",
         "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/bcfresh.jpg",
         "color": "#65A11B"
+    },
+    {
+        "coords": [49.77261478461558, -112.48873209179007],
+        "title": "Van Giessen Growers Inc.",
+        "description": "We are a family-owned vegetable farm in sunny southern Alberta, specializing in premium carrots grown on irrigated acres",
+        "overlay_copy": "We are a family-owned vegetable farm in sunny southern Alberta, specializing in premium carrots grown on irrigated acres. For over 40 years, we have been dedicated to producing high-quality vegetables with a focus on freshness, flavor, and sustainable practices. Blessed with long sunny days and fertile soil, our irrigated fields allow us to grow crisp, sweet carrots and other vegetables that thrive in Alberta’s ideal growing conditions. Generations of farming experience ensure that every harvest meets the highest standards — from seed to table. We take pride in supplying fresh, locally grown produce you can trust.",
+        "image": "https://storage.googleapis.com/dam-sof-prd-9fa6b8b.sof.prd.v8.commerce.mi9cloud.com/Images/Van-Giessen-Growers-Inc.jpg",
+        "color": "#65A11B"
     }
 ]
