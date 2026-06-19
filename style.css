@@ -195,6 +195,12 @@ html, body {
     display: block;
 }
 
+@media (max-width: 768px) {
+    #overlay-img {
+        object-position: top;
+    }
+}
+
 /* Right structural frame for textual layouts */
 .overlay-right {
     flex: 1;
