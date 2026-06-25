@@ -26,41 +26,25 @@ window.addEventListener("load", function() {
         ];
     }
 
-    // GEOLOCATION ENGINE & DYNAMIC OVERLAY GENERATION
-    map.on('locationfound', function(e) {
-        // 1. Plot a custom marker at the user's explicit device location
-        //L.circleMarker(e.latlng, {
-       //     radius: 8,
-        //    fillColor: '#007bef',
-        //    color: '#ffffff',
-        //    weight: 2,
-        //    fillOpacity: 0.9
-       // }).addTo(map);
+   // TIGHT STATIC OVERLAY & VIEW GENERATION (SOUTHERN CORRIDOR)
+// 1. Set a very tight view focused on the southern populated corridor
+const defaultLat = 50.8000;   // Shifted further south
+const defaultLng = -117.5000;  // Centered between Southern BC and Calgary/Edmonton
+map.setView([defaultLat, defaultLng], 7); // Tighter zoom level 
 
-        // 2. Dynamically project the image overlay surrounding the user
-        const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
-        imageOverlayInstance = L.imageOverlay(overlayUrl, dynamicBounds, {
-            opacity: 0.5,
-            interactive: true
-        }).addTo(map);
-    });
+// 2. Define highly restrictive southern bounds
+const extraTightSouthernBounds = [
+    // Southwest corner: Strict mainland focus, cuts out all major islands
+    [49.0000, -123.5000], 
+    // Northeast corner: Just north of Edmonton, ends at Saskatchewan border
+    [54.5000, -110.0000]  
+];
 
-    map.on('locationerror', function(e) {
-        // Fallback View mapping: Centered in BC with a wide zoom level (5)
-        const fallbackLat = 53.7267;
-        const fallbackLng = -127.6476;
-        map.setView([fallbackLat, fallbackLng], 5);
-
-        // Fallback Static BC Bounds placement (Southwest corner to Northeast corner)
-        const bcBounds = [
-            [48.3000, -139.0000], // Southwest boundary (includes Vancouver Island / Haida Gwaii)
-            [60.0000, -114.0000]  // Northeast boundary (Alberta / NWT border)
-        ];
-        imageOverlayInstance = L.imageOverlay(overlayUrl, bcBounds, {
-            opacity: 0.5,
-            interactive: true
-        }).addTo(map);
-    });
+// 3. Project the image overlay across the tightened southern region
+imageOverlayInstance = L.imageOverlay(overlayUrl, extraTightSouthernBounds, {
+    opacity: 0.5,
+    interactive: true
+}).addTo(map);
 
     // Fire browser prompt request for target location tracking
     map.locate({ setView: true, maxZoom: 11 });
