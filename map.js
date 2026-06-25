@@ -29,13 +29,13 @@ window.addEventListener("load", function() {
     // GEOLOCATION ENGINE & DYNAMIC OVERLAY GENERATION
     map.on('locationfound', function(e) {
         // 1. Plot a custom marker at the user's explicit device location
-        L.circleMarker(e.latlng, {
-            radius: 8,
-            fillColor: '#007bef',
-            color: '#ffffff',
-            weight: 2,
-            fillOpacity: 0.9
-        }).addTo(map);
+        //L.circleMarker(e.latlng, {
+       //     radius: 8,
+        //    fillColor: '#007bef',
+        //    color: '#ffffff',
+        //    weight: 2,
+        //    fillOpacity: 0.9
+       // }).addTo(map);
 
         // 2. Dynamically project the image overlay surrounding the user
         const dynamicBounds = createDynamicBounds(e.latlng.lat, e.latlng.lng, 0.01);
